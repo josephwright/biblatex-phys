@@ -25,6 +25,26 @@
     url          = false
   }
 
+% Modify the name format
+\DeclareNameFormat{default}{%
+  \usebibmacro{name:first-last}{#1}{#4}{#5}{#7}%
+  \usebibmacro{name:andothers}%
+}
+
+\renewbibmacro*{name:first-last}[4]{%
+  \usebibmacro{name:delim}{#2#3#1}%
+  \usebibmacro{name:hook}{#2#3#1}%
+  \ifblank{#2}{}{\mkbibnamefirst{#2}\isdot\bibnamedelimd}%
+  \ifblank{#3}{}{%
+    \mkbibnameprefix{#3}\isdot
+    \ifpunctmark{'}
+      {}
+      {\ifuseprefix{\bibnamedelimc}{\bibnamedelimd}}}%
+  \mkbibnamelast{#1}\isdot
+  \ifblank{#4}{}
+    {\addcomma\addspace\mkbibnameaffix{#4}\isdot}%
+}
+
 % Custom field formats 
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
 
