@@ -13,6 +13,19 @@
 % Load the standard style to avoid copy-pasting unnecessary material
 \RequireBibliographyStyle{numeric-comp}
 
+% Alter settings that carry through from biblatex
+\ExecuteBibliographyOptions
+  {
+    doi          = false ,
+    eprint       = false ,
+    firstinits   = true  ,
+    isbn         = false ,
+    maxnames     = 999   ,
+    maxcitenames = 2     ,
+    url          = false
+  }
+
+% Custom field formats 
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
 
 %% 
