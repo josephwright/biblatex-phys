@@ -42,11 +42,19 @@
       {\ifuseprefix{\bibnamedelimc}{\bibnamedelimd}}}%
   \mkbibnamelast{#1}\isdot
   \ifblank{#4}{}
-    {\addcomma\addspace\mkbibnameaffix{#4}\isdot}%
+    {\addcomma\space\mkbibnameaffix{#4}\isdot}%
 }
 
-% Custom field formats 
+% Custom field formats
+\DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
+\DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+
+% Simple modifications to punctuation, etc.
+\renewcommand*{\newunitpunct}{\addcomma\space}
+
+% Bibliography macros
+\renewbibmacro*{in:}{}
 
 %% 
 %% Copyright (C) 2012 by
