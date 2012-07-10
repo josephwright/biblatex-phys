@@ -48,13 +48,75 @@
 % Custom field formats
 \DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
+\DeclareFieldFormat[article]{pages}{#1}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat{year}{\mkbibparens{#1}}
 
 % Simple modifications to punctuation, etc.
 \renewcommand*{\newunitpunct}{\addcomma\space}
 
 % Bibliography macros
 \renewbibmacro*{in:}{}
+
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addspace}%
+  \iffieldundef{series}
+    {}
+    {\newunit
+     \printfield{series}%
+     \setunit{\addspace}}%
+  \usebibmacro{volume+number+eid}%
+  \setunit{\addspace}%
+  \usebibmacro{issue}%
+  \newunit
+}
+
+\renewbibmacro*{volume+number+eid}{%
+  \printfield{volume}%
+  \newunit
+  \printfield{eid}%
+}
+
+% New bibliography drivers, using the required order of fields. These
+% are mainly copied from standard.bbx then modified.
+\DeclareBibliographyDriver{article}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{title}%
+  \newunit
+  \printlist{language}%
+  \newunit\newblock
+  \usebibmacro{byauthor}%
+  \newunit\newblock
+  \usebibmacro{bytranslator+others}%
+  \newunit\newblock
+  \printfield{version}%
+  \newunit\newblock
+  \usebibmacro{in:}%
+  \usebibmacro{journal+issuetitle}%
+  \newunit
+  \usebibmacro{byeditor+others}%
+  \newunit
+  \usebibmacro{note+pages}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{issn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \setunit{\addspace}%
+  \printfield{year}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \usebibmacro{related}%
+  \usebibmacro{finentry}%
+}
 
 %% 
 %% Copyright (C) 2012 by
