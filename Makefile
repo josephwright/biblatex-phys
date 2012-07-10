@@ -73,7 +73,7 @@ CLEAN = \
 	zip 
 
 DOCS   = biblatex-phys
-STYLES = 
+STYLES = phys-aip phys-aps
 TDS    = latex/$(PACKAGE)
 
 # Even if files exist, use the rules here
