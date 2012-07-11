@@ -61,6 +61,13 @@
 % Simple modifications to punctuation, etc.
 \renewcommand*{\newunitpunct}{\addcomma\space}
 
+% Bibliography strings
+\DefineBibliographyStrings{english}{%
+  chapter   = Chap\adddot,
+  volume    = Vol\adddot
+}
+
+
 % Localised style changes
 \AtBeginBibliography{%
   \urlstyle{same}%
