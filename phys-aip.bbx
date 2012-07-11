@@ -79,22 +79,6 @@
   \newunit
 }
 
-\renewbibmacro*{note+pages}{%
-  \printfield{note}%
-  \setunit{\bibpagespunct}%
-  \printfield{pages}%
-  \iffieldundef{pages}
-    {%
-      \printfield{doi}%
-      \clearfield{doi}%
-    }%
-    {%
-      \iftoggle{bbx:doi}
-        {}
-        {\clearfield{doi}}%
-    }%
-}
-
 \renewbibmacro*{volume+number+eid}{%
   \printfield{volume}%
   \newunit
@@ -132,6 +116,14 @@
   \usebibmacro{doi+eprint+url}%
   \setunit{\addspace}%
   \printfield{year}%
+  \newunit\newblock
+  \iffieldundef{pages}
+    {%
+      \iftoggle{bbx:doi}
+        {}
+        {\printfield{doi}}%
+    }%
+    {}
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
   \setunit{\bibpagerefpunct}\newblock
