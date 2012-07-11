@@ -55,6 +55,7 @@
 \DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
 \DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
 \DeclareFieldFormat{year}{\mkbibparens{#1}}
 
@@ -66,7 +67,6 @@
   chapter   = Chap\adddot,
   volume    = Vol\adddot
 }
-
 
 % Localised style changes
 \AtBeginBibliography{%
