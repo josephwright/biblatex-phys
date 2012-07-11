@@ -72,6 +72,22 @@
   \newunit
 }
 
+\renewbibmacro*{note+pages}{%
+  \printfield{note}%
+  \setunit{\bibpagespunct}%
+  \printfield{pages}%
+  \iffieldundef{pages}
+    {%
+      \printfield{doi}%
+      \clearfield{doi}%
+    }%
+    {%
+      \iftoggle{bbx:doi}
+        {}
+        {\clearfield{doi}}%
+    }%
+}
+
 \renewbibmacro*{volume+number+eid}{%
   \printfield{volume}%
   \newunit
