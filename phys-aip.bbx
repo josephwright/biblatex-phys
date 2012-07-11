@@ -46,7 +46,6 @@
 }
 
 % Custom field formats
-% Custom field formats 
 \DeclareFieldFormat[inproceedings]{booktitle}{#1}
 \DeclareFieldFormat{doi}{%
   \ifhyperref
@@ -61,6 +60,10 @@
 
 % Simple modifications to punctuation, etc.
 \renewcommand*{\newunitpunct}{\addcomma\space}
+
+\AtBeginBibliography{%
+  \urlstyle{same}%
+}
 
 % Bibliography macros
 \renewbibmacro*{in:}{}
