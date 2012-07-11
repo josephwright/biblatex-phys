@@ -83,6 +83,18 @@
   \newunit
 }
 
+\renewbibmacro*{publisher+location+date}{%
+  \setunit{\addspace}%
+  \printtext[parens]{%
+    \printlist{publisher}%
+    \newunit
+    \printlist{location}%
+    \newunit
+    \usebibmacro{date}%
+  }%
+  \newunit
+}
+
 \renewbibmacro*{volume+number+eid}{%
   \printfield{volume}%
   \newunit
