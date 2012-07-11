@@ -69,6 +69,17 @@
 % Bibliography macros
 \renewbibmacro*{in:}{}
 
+\renewbibmacro*{institution+location+date}{%
+  \setunit{\addspace}%
+  \printtext[parens]{%
+    \printlist{institution}%
+    \newunit
+    \printlist{location}%
+    \newunit
+    \usebibmacro{date}%
+  }%
+}
+
 \renewbibmacro*{journal+issuetitle}{%
   \usebibmacro{journal}%
   \setunit*{\addspace}%
