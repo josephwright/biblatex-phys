@@ -74,6 +74,14 @@
 }
 
 % Bibliography macros
+\renewbibmacro*{chapter+pages}{%
+  \setunit{\addspace}%
+  \printfield{chapter}%
+  \setunit{\bibpagespunct}%
+  \printfield{pages}%
+  \newunit
+}
+
 \renewbibmacro*{in:}{}
 
 \renewbibmacro*{institution+location+date}{%
