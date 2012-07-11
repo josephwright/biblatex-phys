@@ -46,6 +46,13 @@
 }
 
 % Custom field formats
+% Custom field formats 
+\DeclareFieldFormat[inproceedings]{booktitle}{#1}
+\DeclareFieldFormat{doi}{%
+  \ifhyperref
+    {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+    {\nolinkurl{#1}}%
+}
 \DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
 \DeclareFieldFormat[article]{pages}{#1}
