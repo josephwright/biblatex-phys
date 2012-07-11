@@ -23,7 +23,7 @@
 
   rem The biblatex styles included
 
-  set STYLES=phys-aip phys-aps
+  set STYLES=phys-aip
 
   rem The file types for inclusion in the archive files: note that a CTAN
   rem archive should not contain "unpacked" files. Typeset files and their
