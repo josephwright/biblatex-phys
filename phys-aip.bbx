@@ -60,6 +60,7 @@
 \DeclareFieldFormat{year}{\mkbibparens{#1}}
 
 % Simple modifications to punctuation, etc.
+\renewcommand*{\intitlepunct}{\addspace}
 \renewcommand*{\newunitpunct}{\addcomma\space}
 
 % Bibliography strings
@@ -81,8 +82,6 @@
   \printfield{pages}%
   \newunit
 }
-
-\renewbibmacro*{in:}{}
 
 \renewbibmacro*{institution+location+date}{%
   \setunit{\addspace}%
@@ -144,7 +143,6 @@
   \newunit\newblock
   \printfield{version}%
   \newunit\newblock
-  \usebibmacro{in:}%
   \usebibmacro{journal+issuetitle}%
   \newunit
   \usebibmacro{byeditor+others}%
