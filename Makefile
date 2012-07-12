@@ -49,7 +49,7 @@ PACKAGEROOT := latex/$(PACKAGE)
 AUXFILES = \
 	aux  \
 	bbl  \
-	bcf \
+	bcf  \
 	blg  \
 	cmds \
 	glo  \
@@ -72,7 +72,6 @@ CLEAN = \
 	txt \
 	zip 
 
-DOCS   = biblatex-phys
 STYLES = phys
 TDS    = latex/$(PACKAGE)
 
@@ -94,21 +93,16 @@ ctan: tds
 	echo "Making CTAN zip file"
 	mkdir -p tmp/
 	rm -rf tmp/*
-	mkdir -p tmp/$(PACKAGE)/latex/
-	mkdir -p tmp/$(PACKAGE)/doc/
-	for I in $(DOCS) ; do \
-	  cp $$I.bib tmp/$(PACKAGE)/doc/ ; \
-	  cp $$I.pdf tmp/$(PACKAGE)/doc/ ; \
-	  cp $$I.tex tmp/$(PACKAGE)/doc/ ; \
-	done
+	mkdir -p tmp/$(PACKAGE)
 	for I in $(STYLES) ; do \
-	  cp $$I.bbx tmp/$(PACKAGE)/latex/        ; \
-	  cp $$I.cbx tmp/$(PACKAGE)/latex/        ; \
-	  cp biblatex-$$I.pdf tmp/$(PACKAGE)/doc/ ; \
-	  cp biblatex-$$I.tex tmp/$(PACKAGE)/doc/ ; \
+	  cp $$I.bbx tmp/$(PACKAGE) ; \
+	  cp $$I.cbx tmp/$(PACKAGE) ; \
+	  cp biblatex-$$I.pdf tmp/$(PACKAGE) ; \
+	  cp biblatex-$$I.tex tmp/$(PACKAGE) ; \
 	done
+	cp $(PACKAGE).bib tmp/$(PACKAGE) ; \
 	cp README tmp/$(PACKAGE)
-	cp README tmp/$(PACKAGE)/doc
+	cp README tmp/$(PACKAGE)
 	cp $(PACKAGE).tds.zip tmp/
 	cd tmp ; \
 	zip -ll -q -r -X ../$(PACKAGE).zip .
@@ -116,16 +110,11 @@ ctan: tds
 
 doc:
 	echo "Compiling documents"
-	for I in $(DOCS) ; do \
-	  pdflatex -draftmode -interaction=nonstopmode $$I > /dev/null ; \
-	  makeindex -q -s gglo.ist -o $$I.gls $$I.glo > /dev/null ; \
-	  pdflatex -interaction=nonstopmode $$I > /dev/null ; \
-	  rm -rf $$I-blx.bib                                ; \
-	done
 	for I in $(STYLES) ; do \
-	  pdflatex -draftmode -interaction=nonstopmode biblatex-$$I > /dev/null ; \
-	  bibtex8 --wolfgang biblatex-$$I > /dev/null ; \
-	  pdflatex -interaction=nonstopmode biblatex-$$I            > /dev/null ; \
+	  pdflatex -draftmode -interaction=batchmode biblatex-$$I &> /dev/null    ; \
+	  makeindex -s gglo.ist -o biblatex-$$I.gls biblatex-$$I.glo &> /dev/null ; \
+	  bibtex8 --wolfgang biblatex-$$I                         &> /dev/null    ; \
+	  pdflatex -interaction=batchmode biblatex-$$I            &> /dev/null    ; \
 	  rm -rf biblatex-$$I-blx.bib ; \
 	done
 	for I in $(AUXFILES) ; do \
@@ -139,26 +128,21 @@ localinstall:
 	rm -rf $$TEXMFHOME/tex/$(PACKAGEROOT)/* ; \
 	mkdir -p $$TEXMFHOME/tex/$(PACKAGEROOT) ; \
 	cp *.bbx $$TEXMFHOME/tex/$(PACKAGEROOT)/ ; \
-	cp *.cbx $$TEXMFHOME/tex/$(PACKAGEROOT)/ ; \
-	texhash > /dev/null
+	cp *.cbx $$TEXMFHOME/tex/$(PACKAGEROOT)/
 	
 tds: doc
 	echo "Making TDS structure"
 	mkdir -p tds/
 	rm -rf tds/*
-	mkdir -p tds/tex/$(TDS)
 	mkdir -p tds/doc/$(TDS)
-	for I in $(DOCS) ; do \
-	  cp $$I.bib tds/doc/$(TDS)/ ; \
-	  cp $$I.pdf tds/doc/$(TDS)/ ; \
-	  cp $$I.tex tds/doc/$(TDS)/ ; \
-	done
+	mkdir -p tds/tex/$(TDS)
 	for I in $(STYLES) ; do \
-	  cp $$I.bbx tds/tex/$(TDS)/            ; \
-	  cp $$I.cbx tds/tex/$(TDS)/            ; \
+	  cp $$I.bbx tds/tex/$(TDS)/ ; \
+	  cp $$I.cbx tds/tex/$(TDS)/ ; \
 	  cp biblatex-$$I.pdf tds/doc/$(TDS)/ ; \
 	  cp biblatex-$$I.tex tds/doc/$(TDS)/ ; \
 	done
+	cp $(PACKAGE).bib tds/doc/$(TDS)/ ; \
 	cp README tds/doc/$(TDS)/
 	cd tds ; \
 	zip -ll -q -r -X ../$(PACKAGE).tds.zip .

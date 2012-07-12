@@ -1,5 +1,9 @@
 @echo off
 
+  rem Make batch file for "biblatex-phys"
+
+  rem Default with no target is to give help   
+
   if not "%1" == "" goto :init
 
 :help
@@ -16,8 +20,7 @@
 
   setlocal
 
-  rem The name of the package to create should be set here: here, the
-  rem example package "testpkg" is in use
+  rem Master package name 
 
   set PACKAGE=biblatex-phys
 
@@ -27,9 +30,9 @@
 
   rem The file types for inclusion in the archive files: note that a CTAN
   rem archive should not contain "unpacked" files. Typeset files and their
-  rem sources are not inlcuded here: they are dealt with separately
+  rem sources are not included here: they are dealt with separately
 
-  set CTANFILES=bbx cbx pdf tex
+  set CTANFILES=bbx bib cbx pdf tex
   set TDSFILES=%CTANFILES%
 
   rem Files to typeset
@@ -38,12 +41,12 @@
   rem parts. AUXFILES are deleted after each (La)TeX run, CLEAN only
   rem when the user calls "make clean"
 
-  set AUXFILES=aux bbl blg glo gls ilg log out toc xml
+  set AUXFILES=aux bbl blg gz log out toc xml
   set CLEAN=pdf zip
 
   rem The file types for inclusion in the archive files: note that a CTAN
   rem archive should not contain "unpacked" files. Typeset files and their
-  rem sources are not inlcuded here: they are dealt with separately
+  rem sources are not included here: they are dealt with separately
 
   set CTANFILES=bbx bib cbx pdf tex
   set TDSFILES=%CTANFILES%
@@ -79,6 +82,8 @@
   for %%I in (%TXT%) do (
     if exist %%I del /q %%I
   )
+  
+  if exist %PACKAGE%-blx.bib del /q %PACKAGE%-blx.bib
 
 :clean-aux
 
@@ -114,14 +119,10 @@
 
 :doc 
 
-  echo Main documentation
-  pdflatex %PACKAGE% > nul
-  makeindex -q -s gglo.ist -o %PACKAGE%.gls %PACKAGE%.glo > nul
-  pdflatex %PACKAGE% > nul
-
   for %%I in (%STYLES%) do (
     echo biblatex-%%I
     pdflatex biblatex-%%I > nul
+    makeindex -s gglo.ist -o biblatex-%%I.gls biblatex-%%I.glo > nul
     bibtex8 --wolfgang biblatex-%%I > nul
     pdflatex biblatex-%%I > nul
   )
