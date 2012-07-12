@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-The biblatex-phys bundle - A set of biblatex implementations of
-   physics-related bibliography styles
+biblatex-phys --- A biblatex implementation of the AIP and APS 
+  bibliography style
 Maintained by Joseph Wright
 E-mail: joseph.wright@morningstar2.co.uk
 Released under the LaTeX Project Public License v1.3c or later
