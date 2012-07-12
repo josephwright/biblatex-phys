@@ -122,6 +122,18 @@ To obtain the \textsc{aps} style, use
     {biblatex}
 \end{verbatim}
 
+\section{\textsc{url} formatting}
+
+The style uses the \pkg{url} package to format hyperlinks. As such, the
+format of these is left to the document author to alter. The \cs{urlstyle}
+command may be used to alter this, either for the whole document or only
+for the bibliography, for example by using
+\begin{verbatim}
+\AtBeginBibliography{%
+  \urlstyle{rm}%
+}
+\end{verbatim}
+
 \section{Interaction with \pkg{babel}}
 
 In common with other \pkg{biblatex} styles, \pkg{biblatex-phys} uses the
