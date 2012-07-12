@@ -90,6 +90,11 @@ the \textsc{aip}: it should be set to \opt{false} to follow the \textsc{aps}
 style. (This option also applies to the titles of proceedings entries and
 patents, which are treated in the same way.)
 
+\DescribeOption{chaptertitle}
+Printing chapter titles for \texttt{incollection} entries is part of the
+\textsc{aip} style but is not part of the \textsc{aps} style. The
+\opt{chaptertitle} option can be used to control this.
+
 \DescribeOption{pageranges}
 The inclusion of the full page range of journal articles varies between the
 \textsc{aip} and \textsc{aps} styles. The boolean option \opt{pageranges} is
@@ -103,7 +108,10 @@ result in only the first page being printed.
 As detailed above, the standard settings follow the \textsc{aip} style.
 To obtain the \textsc{aps} style, use
 \begin{verbatim}
-  \usepackage[style=phys,articletitle=false,pageranges=false]
+  \usepackage[%
+      style=phys,%
+      articletitle=false,chaptertitle=false,pageranges=false%
+    ]
     {biblatex}
 \end{verbatim}
 

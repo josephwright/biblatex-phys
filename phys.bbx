@@ -15,9 +15,13 @@
 
 % New options
 \newtoggle{bbx:articletitle}
+\newtoggle{bbx:chaptertitle}
 \newtoggle{bbx:pageranges}
 \DeclareBibliographyOption{articletitle}[true]{%
   \settoggle{bbx:articletitle}{#1}%
+}
+\DeclareBibliographyOption{chaptertitle}[true]{%
+  \settoggle{bbx:chaptertitle}{#1}%
 }
 \DeclareBibliographyOption{pageranges}[true]{%
   \settoggle{bbx:pageranges}{#1}%
@@ -27,6 +31,7 @@
 \ExecuteBibliographyOptions
   {
     articletitle = true  ,
+    chaptertitle = true  ,
     doi          = false ,
     eprint       = false ,
     firstinits   = true  ,
@@ -69,8 +74,13 @@
 \DeclareFieldFormat[article]{pages}{%
   \iftoggle{bbx:pageranges}{#1}{\mkfirstpage{#1}}%
 }
-\DeclareFieldFormat[article,,inproceedings,patent]{title}{%
+\DeclareFieldFormat[article,inproceedings,patent]{title}{%
   \iftoggle{bbx:articletitle}
+    {\mkbibquote{#1\isdot}}
+    {}%
+}
+\DeclareFieldFormat[incollection]{title}{%
+  \iftoggle{bbx:chaptertitle}
     {\mkbibquote{#1\isdot}}
     {}%
 }
