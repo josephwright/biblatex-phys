@@ -15,19 +15,25 @@
 
 % New options
 \newtoggle{bbx:articletitle}
+\newtoggle{bbx:pageranges}
 \DeclareBibliographyOption{articletitle}[true]{%
   \settoggle{bbx:articletitle}{#1}%
+}
+\DeclareBibliographyOption{pageranges}[true]{%
+  \settoggle{bbx:pageranges}{#1}%
 }
 
 % Alter settings that carry through from biblatex
 \ExecuteBibliographyOptions
   {
+    articletitle = true  ,
     doi          = false ,
     eprint       = false ,
     firstinits   = true  ,
     isbn         = false ,
     maxnames     = 999   ,
     maxcitenames = 2     ,
+    pageranges   = true  ,
     url          = false
   }
 
@@ -60,7 +66,9 @@
 }
 \DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
-\DeclareFieldFormat[article]{pages}{#1}
+\DeclareFieldFormat[article]{pages}{%
+  \iftoggle{bbx:pageranges}{#1}{\mkfirstpage{#1}}%
+}
 \DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
 \DeclareFieldFormat{year}{\mkbibparens{#1}}
