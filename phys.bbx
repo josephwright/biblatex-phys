@@ -26,19 +26,31 @@
 \DeclareBibliographyOption{pageranges}[true]{%
   \settoggle{bbx:pageranges}{#1}%
 }
+\DeclareBibliographyOption{biblabel}{%
+  \ifstrequal{#1}{brackets}
+    {%
+      \DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{##1}}%
+      \setlength{\biblabelsep}{10 pt}%
+    }
+    {%
+      \DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{##1}}%
+      \setlength{\biblabelsep}{0 pt}%
+    }%
+}
 
 % Alter settings that carry through from biblatex
 \ExecuteBibliographyOptions
   {
-    articletitle = true  ,
-    chaptertitle = true  ,
-    doi          = false ,
-    eprint       = false ,
-    firstinits   = true  ,
-    isbn         = false ,
-    maxnames     = 999   ,
-    maxcitenames = 2     ,
-    pageranges   = true  ,
+    articletitle = true       ,
+    chaptertitle = true       ,
+    biblabel     = superscript,
+    doi          = false      ,
+    eprint       = false      ,
+    firstinits   = true       ,
+    isbn         = false      ,
+    maxnames     = 999        ,
+    maxcitenames = 2          ,
+    pageranges   = true       ,
     url          = false
   }
 
@@ -70,7 +82,6 @@
     {\nolinkurl{#1}}%
 }
 \DeclareFieldFormat{journaltitle}{#1\isdot}
-\DeclareFieldFormat{labelnumberwidth}{\mkbibsuperscript{#1}}
 \DeclareFieldFormat[article]{pages}{%
   \iftoggle{bbx:pageranges}{#1}{\mkfirstpage{#1}}%
 }

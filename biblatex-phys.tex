@@ -90,6 +90,12 @@ the \textsc{aip}: it should be set to \opt{false} to follow the \textsc{aps}
 style. (This option also applies to the titles of proceedings entries and
 patents, which are treated in the same way.)
 
+\DescribeOption{biblabel}
+The format of the numbers used in the bibliography (the \enquote{bibliography
+label}) varies. he \opt{biblabel} option allows the user to easily set the
+format used. This option takes a values \opt{superscript} (the standard
+setting) and \opt{brackets}.
+
 \DescribeOption{chaptertitle}
 Printing chapter titles for \texttt{incollection} entries is part of the
 \textsc{aip} style but is not part of the \textsc{aps} style. The
@@ -110,7 +116,8 @@ To obtain the \textsc{aps} style, use
 \begin{verbatim}
   \usepackage[%
       style=phys,%
-      articletitle=false,chaptertitle=false,pageranges=false%
+      articletitle=false,biblabel=brackets,%
+      chaptertitle=false,pageranges=false%
     ]
     {biblatex}
 \end{verbatim}
