@@ -13,6 +13,12 @@
 % Load the standard style to avoid copy-pasting unnecessary material
 \RequireBibliographyStyle{numeric-comp}
 
+% New options
+\newtoggle{bbx:articletitle}
+\DeclareBibliographyOption{articletitle}[true]{%
+  \settoggle{bbx:articletitle}{#1}%
+}
+
 % Alter settings that carry through from biblatex
 \ExecuteBibliographyOptions
   {
@@ -134,8 +140,12 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\labelnamepunct}\newblock
-  \usebibmacro{title}%
-  \newunit
+  \iftoggle{bbx:articletitle}
+    {%
+      \usebibmacro{title}%
+      \newunit
+    }
+    {}%
   \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
