@@ -10,11 +10,14 @@
 
 \documentclass[a4paper]{ltxdoc}
 \usepackage[T1]{fontenc}
+\usepackage[backend=bibtex,style=phys]{biblatex}
 \usepackage[final]{microtype}
 \usepackage{csquotes,lmodern}
 \usepackage{hyperref}
 
 \hypersetup{hidelinks}
+
+\addbibresource{biblatex-phys.bib}
 
 \author{Joseph Wright\thanks{E-mail: 
   \href{mailto:joseph.wright@morningstar2.co.uk}
@@ -87,6 +90,10 @@ database, found at
 be sent by e-mail to 
 \href{mailto:joseph.wright@morningstar2.co.uk}
   {\texttt{joseph.wright@morningstar2.co.uk}}.
+
+\nocite{*}
+
+\printbibliography
 
 \PrintChanges
 
