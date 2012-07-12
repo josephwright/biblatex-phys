@@ -87,7 +87,8 @@ The use of article titles varies between the \textsc{aip} and \textsc{aps}
 styles. The boolean option \opt{articletitle} is available is control this
 behaviour. The standard settings is \opt{true}, which follows the guidelines of
 the \textsc{aip}: it should be set to \opt{false} to follow the \textsc{aps}
-style.
+style. (This option also applies to the titles of proceedings entries and
+patents, which are treated in the same way.)
 
 \DescribeOption{pageranges}
 The inclusion of the full page range of journal articles varies between the
@@ -102,7 +103,7 @@ result in only the first page being printed.
 As detailed above, the standard settings follow the \textsc{aip} style.
 To obtain the \text{aps} style, use
 \begin{verbatim}
-  \usepackage[style=phys,articletitle=flase,pageranges=false]
+  \usepackage[style=phys,articletitle=false,pageranges=false]
     {biblatex}
 \end{verbatim}
 

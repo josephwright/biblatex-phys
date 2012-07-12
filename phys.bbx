@@ -69,6 +69,11 @@
 \DeclareFieldFormat[article]{pages}{%
   \iftoggle{bbx:pageranges}{#1}{\mkfirstpage{#1}}%
 }
+\DeclareFieldFormat[article,,inproceedings,patent]{title}{%
+  \iftoggle{bbx:articletitle}
+    {\mkbibquote{#1\isdot}}
+    {}%
+}
 \DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
 \DeclareFieldFormat{year}{\mkbibparens{#1}}
@@ -148,12 +153,8 @@
   \usebibmacro{begentry}%
   \usebibmacro{author/translator+others}%
   \setunit{\labelnamepunct}\newblock
-  \iftoggle{bbx:articletitle}
-    {%
-      \usebibmacro{title}%
-      \newunit
-    }
-    {}%
+  \usebibmacro{title}%
+  \newunit
   \printlist{language}%
   \newunit\newblock
   \usebibmacro{byauthor}%
