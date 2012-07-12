@@ -239,6 +239,69 @@
   \usebibmacro{finentry}%
 }
 
+% Deal with repeated names or journals in entry sets: based on
+% http://tex.stackexchange.com/a/63013
+\DeclareBibliographyDriver{set}{%
+  \entryset
+    {%
+      \ifbool{bbx:subentry}
+        {\printfield[bibentrysetcount]{entrysetcount}%
+         \setunit*{\addnbspace}}
+        {}%
+     }
+    {%
+      \ifnumequal{\thefield{entrysetcount}}{1}
+        {%
+          \savefield{journaltitle}{\bbx@set@journal}%
+          \savefield{namehash}{\bbx@set@namehash}%
+        }
+        {}%
+    }%
+  \newunit\newblock
+  \usebibmacro{setpageref}%
+  \finentry
+}
+
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+    {%
+      \iffieldequals{namehash}{\bbx@set@namehash}
+        {}
+        {%
+          \global\undef\bbx@set@namehash
+          \printnames{author}%
+          \iffieldundef{authortype}
+            {}
+            {%
+              \setunit{\addcomma\space}%
+              \usebibmacro{authorstrg}%
+	        }%
+	    }%
+	}
+    {}%
+}
+
+\renewbibmacro*{journal}{%
+  \iffieldundef{journaltitle}
+    {}
+    {%
+      \iffieldequals{journaltitle}{\bbx@set@journal}
+        {\bibstring[\mkibid]{ibidem}}
+        {%
+          \global\undef\bbx@set@journal
+          \printtext[journaltitle]{%
+            \printfield[titlecase]{journaltitle}%
+            \setunit{\subtitlepunct}%
+            \printfield{journalsubtitle}%
+          }%
+        }% 
+    }%
+}
+
 %% 
 %% Copyright (C) 2012 by
 %%   Joseph Wright <joseph.wright@morningstar2.co.uk>
