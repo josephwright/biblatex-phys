@@ -62,7 +62,7 @@ with common fields filled in.
 
 All of the styles here add a small number of package options to the standard
 set provided by \pkg{biblatex}. This allows the styles to cover the variations
-seen between different journals without needing a very large number of files.
+seen between the \textsc{aip} and \textsc{aps} styles.
 
 \DescribeOption{doi}
 \DescribeOption{eprint}
@@ -82,6 +82,13 @@ in the bundle support the boolean \texttt{subentry} option. With this set
 \opt{true}, entries of type \texttt{set} are given individual labels within
 the bibliography.
 
+\DescribeOption{articletitle}
+The use of article titles varies between the \textsc{aip} and \textsc{aps}
+styles. The boolean option \opt{articletitle} is available is control this
+behaviour. The standard settings is \opt{true}, which follows the guidelines of
+the \textsc{aip}: it should be set to \opt{false} to follow the \textsc{aps}
+style.
+
 \section{Errors and omissions}
 
 Suggestions for improvement and bug reports can be logged in the package issue
@@ -90,7 +97,7 @@ database, found at
 be sent by e-mail to 
 \href{mailto:joseph.wright@morningstar2.co.uk}
   {\texttt{joseph.wright@morningstar2.co.uk}}.
-
+  
 \nocite{*}
 
 \printbibliography
