@@ -7,8 +7,14 @@ Released under the LaTeX Project Public License v1.3c or later
 See http://www.latex-project.org/lppl.txt
 ----------------------------------------------------------------
 
-The biblatex-phys bundle is a set of styles for creating
-bibliographies using biblatex in the style of a number common
-physics. The bundle comprises styles based on the conventions of
-the American Institute of Physics and the American Physical
-Society.
+The biblatex-phys package provides an implementation of the 
+bibliography styles of both the AIP and the APS for biblatex.
+This implementation follows standard biblatex conventions, and
+can be used simply by loading biblatex with the appropriate option
+
+  \usepackage[style=phys]{biblatex}
+   
+A demonstration database is provided to show how to format
+input for the style. Style options are provided to cover the
+minor formatting variations between the AIP and APS bibliography
+styles.
