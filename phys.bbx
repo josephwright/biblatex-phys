@@ -76,6 +76,7 @@
 
 % Custom field formats
 \DeclareFieldFormat[inproceedings]{booktitle}{#1}
+\DeclareFieldFormat[online]{date}{\mkbibparens{#1}\nopunct}
 \DeclareFieldFormat{doi}{%
   \ifhyperref
     {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
