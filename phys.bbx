@@ -150,6 +150,26 @@
   \newunit
 }
 
+\renewbibmacro*{maintitle+booktitle}{%
+  \iffieldundef{maintitle}
+    {}
+    {%
+      \usebibmacro{maintitle}%
+      \newunit
+    }%
+  \usebibmacro{booktitle}%
+  \newunit\newblock
+  \iffieldundef{volume}
+    {}
+    {%
+      \printfield{volume}%
+      \clearfield{volume}%
+      \printfield{part}%
+      \clearfield{part}%
+    }%
+  \newunit
+}
+
 \newbibmacro*{organization+date}{%
   \setunit{\addspace}%
   \printtext[parens]{%
