@@ -331,12 +331,12 @@
         {}%
      }
     {%
-      \ifnumequal{\thefield{entrysetcount}}{1}
-        {%
-          \savefield{journaltitle}{\bbx@set@journal}%
-          \savefield{namehash}{\bbx@set@namehash}%
-        }
-        {}%
+      \ifdef{\bbx@set@journal}
+        {}
+        {\savefield{journaltitle}{\bbx@set@journal}}%
+      \ifdef{\bbx@set@namehash}
+        {}
+        {\savefield{namehash}{\bbx@set@namehash}}%
     }%
   \newunit\newblock
   \usebibmacro{setpageref}%
