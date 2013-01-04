@@ -214,18 +214,16 @@
   \iftoggle{bbx:isbn}
     {\printfield{issn}}
     {}%
-  \newunit\newblock
-  \usebibmacro{doi+eprint+url}%
   \setunit{\addspace}%
   \printfield{year}%
-  \newunit\newblock
+  \setunit{\addspace}%
   \iffieldundef{pages}
     {%
-      \iftoggle{bbx:doi}
-        {}
-        {\printfield{doi}}%
-    }
+      \printfield{doi}%
+      \clearfield{doi}%
+    }%
     {}%
+  \usebibmacro{doi+eprint+url}%
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
   \setunit{\bibpagerefpunct}\newblock
