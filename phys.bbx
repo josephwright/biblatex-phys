@@ -76,6 +76,20 @@
     {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
     {\nolinkurl{#1}}%
 }
+\DeclareFieldFormat{doi/url-link}{%
+  \ifhyperref
+    {%
+      \iffieldundef{doi}
+        {%
+          \iffieldundef{url}
+            {\@firstofone}
+            {\href{\thefield{url}}}%
+        }
+        {\href{http://dx.doi.org/\thefield{doi}}}%
+    }
+    {\@firstofone}%
+      {#1}%
+}
 \DeclareFieldFormat{journaltitle}{#1\isdot}
 \DeclareFieldFormat[article]{pages}{%
   \iftoggle{bbx:pageranges}{#1}{\mkfirstpage{#1}}%
@@ -205,17 +219,19 @@
   \newunit\newblock
   \printfield{version}%
   \newunit\newblock
-  \usebibmacro{journal+issuetitle}%
-  \newunit
-  \usebibmacro{byeditor+others}%
-  \newunit
-  \usebibmacro{note+pages}%
-  \newunit\newblock
-  \iftoggle{bbx:isbn}
-    {\printfield{issn}}
-    {}%
-  \setunit{\addspace}%
-  \printfield{year}%
+  \printtext[doi/url-link]{%
+    \usebibmacro{journal+issuetitle}%
+    \newunit
+    \usebibmacro{byeditor+others}%
+    \newunit
+    \usebibmacro{note+pages}%
+    \newunit\newblock
+    \iftoggle{bbx:isbn}
+      {\printfield{issn}}
+      {}%
+    \setunit{\addspace}%
+    \printfield{year}%
+  }%
   \setunit{\addspace}%
   \iffieldundef{pages}
     {%
