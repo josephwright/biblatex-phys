@@ -82,7 +82,15 @@
       \iffieldundef{doi}
         {%
           \iffieldundef{url}
-            {\@firstofone}
+            {
+              \iffieldundef{eprint}
+                {\@firstofone}
+                {
+                  \iffieldequalstr{eprinttype}{arXiv}
+                    {\href{http://arxiv.org/\abx@arxivpath/\thefield{eprint}}}
+                    {\@firstofone}%
+                }%
+            }
             {\href{\thefield{url}}}%
         }
         {\href{http://dx.doi.org/\thefield{doi}}}%
