@@ -82,7 +82,7 @@
 }
 \DeclareFieldFormat[article,inproceedings,patent]{title}{%
   \iftoggle{bbx:articletitle}
-    {\mkbibquote{#1\isdot}}
+    {\mkbibquote{\MakeSentenceCase{#1}\isdot}}
     {}%
 }
 \DeclareFieldFormat[incollection]{title}{%
