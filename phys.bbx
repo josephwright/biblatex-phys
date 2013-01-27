@@ -70,6 +70,19 @@
 
 % Custom field formats
 \DeclareFieldFormat[inproceedings]{booktitle}{#1}
+\DeclareFieldFormat{eprint:arxiv}{%
+  arXiv\addcolon\space
+  \ifhyperref
+    {\href{http://arxiv.org/\abx@arxivpath/#1}{%
+       \nolinkurl{#1}%
+       \iffieldundef{eprintclass}
+	 {}
+	 {\addspace\UrlFont{\mkbibbrackets{\thefield{eprintclass}}}}}}
+    {\nolinkurl{#1}
+     \iffieldundef{eprintclass}
+       {}
+       {\addspace\UrlFont{\mkbibbrackets{\thefield{eprintclass}}}}}}
+\DeclareFieldAlias{eprint:arXiv}{eprint:arxiv}
 \DeclareFieldFormat[online]{date}{\mkbibparens{#1}\nopunct}
 \DeclareFieldFormat{doi}{%
   \ifhyperref
