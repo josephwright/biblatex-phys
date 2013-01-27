@@ -118,6 +118,7 @@
     {\mkbibquote{#1\isdot}}
     {}%
 }
+\DeclareFieldFormat{related:translatedas}{\mkbibbrackets{#1}}
 \DeclareFieldFormat{titlecase}{\MakeSentenceCase{#1}}
 \DeclareFieldFormat{url}{\url{#1}}
 \DeclareFieldFormat[article]{volume}{\mkbibbold{#1}}
@@ -461,6 +462,61 @@
         }% 
     }%
 }
+
+
+% This is the original definition from standard.bbx, but 
+% a relatedstring is printed only if it was explicitely defined.
+\newbibmacro*{related}{%
+  \ifboolexpr{
+    not test {\iftoggle{bbx:related}}
+    or
+    test {\iffieldundef{related}}
+  }
+    {}
+    {%
+     \setunit{\addperiod\addspace}%
+     \setcounter{bbx:relatedcount}{0}%
+     \setcounter{bbx:relatedtotal}{0}%
+     \def\do##1{\stepcounter{bbx:relatedtotal}}%
+     \docsvfield{related}%
+     \def\do{%
+       \stepcounter{bbx:relatedcount}%
+       \ifnumgreater{\value{bbx:relatedcount}}{1}
+         {\printtext{\relateddelim}}
+         {}}%
+     \ifbibmacroundef{related:\strfield{relatedtype}}
+       {\appto{\do}{\usebibmacro{related:default}}}
+       {\appto{\do}{\usebibmacro*{related:\strfield{relatedtype}}}}%
+     \iffieldformatundef{related:\strfield{relatedtype}}
+       {\def\bbx@tempa{related}}
+       {\def\bbx@tempa{related:\strfield{relatedtype}}}%
+     \printtext[\bbx@tempa]{%
+       \iffieldundef{relatedstring}
+         {}
+         {\iffieldbibstring{relatedstring}
+            {\printtext{\bibstring{\thefield{relatedstring}}\relatedpunct}}
+            {\printtext{\printfield{relatedstring}\relatedpunct}}}%
+       \docsvfield{related}}}}
+
+\newbibmacro*{related:translatedas}[1]{%
+  \entrydata{#1}{%
+    \usebibmacro{journal+issuetitle}%
+    \newunit
+    \usebibmacro{note+pages}%
+    \newunit\newblock
+    \setunit{\addspace}%
+    \printfield{year}%
+    \setunit{\addspace}%
+    \iffieldundef{pages}
+    {%
+      \printfield{doi}%
+      \clearfield{doi}%
+    }%
+    {}%
+    \usebibmacro{doi+eprint+url}%
+  }%
+}
+
 
 %% 
 %% Copyright (C) 2012,2013 by
