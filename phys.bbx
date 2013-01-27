@@ -170,13 +170,15 @@
 }
 
 \renewbibmacro*{maintitle+booktitle}{%
-  \iffieldundef{maintitle}
-    {}
-    {%
-      \usebibmacro{maintitle}%
-      \newunit
-    }%
-  \usebibmacro{booktitle}%
+  \printtext[doi/url-link]{%
+    \iffieldundef{maintitle}
+      {}
+      {%
+        \usebibmacro{maintitle}%
+        \newunit
+      }%
+    \usebibmacro{booktitle}%
+  }%
   \newunit\newblock
   \iffieldundef{volume}
     {}
