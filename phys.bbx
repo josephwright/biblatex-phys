@@ -500,12 +500,14 @@
 
 \newbibmacro*{related:translatedas}[1]{%
   \entrydata{#1}{%
-    \usebibmacro{journal+issuetitle}%
-    \newunit
-    \usebibmacro{note+pages}%
-    \newunit\newblock
-    \setunit{\addspace}%
-    \printfield{year}%
+    \printtext[doi/url-link]{%
+      \usebibmacro{journal+issuetitle}%
+      \newunit
+      \usebibmacro{note+pages}%
+      \newunit\newblock
+      \setunit{\addspace}%
+      \printfield{year}%
+    }%
     \setunit{\addspace}%
     \iffieldundef{pages}
     {%
