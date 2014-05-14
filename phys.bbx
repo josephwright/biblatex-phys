@@ -446,6 +446,7 @@
     {}%
 }
 
+       
 \renewbibmacro*{journal}{%
   \iffieldundef{journaltitle}
     {}
@@ -455,14 +456,13 @@
         {%
           \global\undef\bbx@set@journal
           \printtext[journaltitle]{%
-            \printfield{journaltitle}%
+            \printfield[noformat]{journaltitle}%
             \setunit{\subtitlepunct}%
-            \printfield{journalsubtitle}%
+            \printfield[noformat]{journalsubtitle}%
           }%
         }% 
     }%
 }
-
 
 % This is the original definition from standard.bbx, but 
 % a relatedstring is printed only if it was explicitly defined.
