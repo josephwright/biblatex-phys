@@ -60,15 +60,15 @@
     [4]{%
   \usebibmacro{name:delim}{#2#3#1}%
   \usebibmacro{name:hook}{#2#3#1}%
-  \ifblank{#2}{}{\mkbibnamefirst{#2}\isdot\bibnamedelimd}%
+  \ifblank{#2}{}{\mkbibnamegiven{#2}\isdot\bibnamedelimd}%
   \ifblank{#3}{}{%
     \mkbibnameprefix{#3}\isdot
     \ifpunctmark{'}
       {}
       {\ifuseprefix{\bibnamedelimc}{\bibnamedelimd}}}%
-  \mkbibnamelast{#1}\isdot
+  \mkbibnamefamily{#1}\isdot
   \ifblank{#4}{}
-    {\addcomma\space\mkbibnameaffix{#4}\isdot}%
+    {\addcomma\space\mkbibnamesuffix{#4}\isdot}%
 }
 
 % Custom field formats
