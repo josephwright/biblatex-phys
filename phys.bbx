@@ -62,10 +62,10 @@
         arXiv\addcolon
         \nolinkurl{#1}%
         \iffieldundef{eprintclass}
-	 {}
-	 {\addspace\UrlFont{\mkbibbrackets{\thefield{eprintclass}}}}}}
+          {}
+          {\addspace\UrlFont{\mkbibbrackets{\thefield{eprintclass}}}}}}
     {arXiv\addcolon
-      \nolinkurl{#1}
+      \nolinkurl{#1}%
       \iffieldundef{eprintclass}
         {}
         {\addspace\UrlFont{\mkbibbrackets{\thefield{eprintclass}}}}}}
@@ -426,9 +426,9 @@
             {%
               \setunit{\addcomma\space}%
               \usebibmacro{authorstrg}%
-	        }%
-	    }%
-	}
+            }%
+        }%
+    }
     {}%
 }
 
