@@ -58,7 +58,7 @@
 \DeclareFieldFormat[inproceedings]{booktitle}{#1}
 \DeclareFieldFormat{eprint:arxiv}{%
   \ifhyperref
-    {\href{http://arxiv.org/\abx@arxivpath/#1}{%
+    {\href{https://arxiv.org/\abx@arxivpath/#1}{%
         arXiv\addcolon
         \nolinkurl{#1}%
         \iffieldundef{eprintclass}
@@ -73,7 +73,7 @@
 \DeclareFieldFormat[online]{date}{\mkbibparens{#1}\nopunct}
 \DeclareFieldFormat{doi}{%
   \ifhyperref
-    {\href{http://dx.doi.org/#1}{\nolinkurl{#1}}}
+    {\href{https://doi.org/#1}{\nolinkurl{#1}}}
     {\nolinkurl{#1}}%
 }
 \DeclareFieldFormat{doi/url-link}{%
@@ -85,7 +85,7 @@
             {\@firstofone}
             {\href{\thefield{url}}}%
         }
-        {\href{http://dx.doi.org/\thefield{doi}}}%
+        {\href{https://doi.org/\thefield{doi}}}%
     }
     {\@firstofone}%
       {#1}%
