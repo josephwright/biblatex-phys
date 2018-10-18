@@ -249,7 +249,10 @@
   \setunit{\bibpagerefpunct}\newblock
   \usebibmacro{pageref}%
   \newunit\newblock
-  \usebibmacro{related}%
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
   \usebibmacro{finentry}%
 }
 
@@ -342,7 +345,10 @@
   \setunit{\bibpagerefpunct}\newblock
   \usebibmacro{pageref}%
   \newunit\newblock
-  \usebibmacro{related}%
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
   \usebibmacro{finentry}%
 }
 
@@ -380,7 +386,10 @@
   \setunit{\bibpagerefpunct}\newblock
   \usebibmacro{pageref}%
   \newunit\newblock
-  \usebibmacro{related}%
+  \iftoggle{bbx:related}
+    {\usebibmacro{related:init}%
+     \usebibmacro{related}}
+    {}%
   \usebibmacro{finentry}%
 }
 
