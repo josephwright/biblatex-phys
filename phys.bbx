@@ -237,12 +237,6 @@
     \printfield{year}%
   }%
   \setunit{\addspace}%
-  \iffieldundef{pages}
-    {%
-      \printfield{doi}%
-      \clearfield{doi}%
-    }%
-    {}%
   \usebibmacro{doi+eprint+url}%
   \newunit\newblock
   \usebibmacro{addendum+pubstate}%
