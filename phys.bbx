@@ -432,7 +432,9 @@
               \usebibmacro{authorstrg}%
             }%
         }%
-    }
+      \iffieldundef{collaboration}
+        {}
+        {\printfield[parens]{collaboration}}}
     {}%
 }
 

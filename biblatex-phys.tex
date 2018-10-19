@@ -110,6 +110,13 @@ which follows the guidelines of the \textsc{aip} and prints the full range:
 it should be set to \opt{false} to follow the \textsc{aps} style, which will
 result in only the first page being printed.
 
+\subsection{\texttt{collaboration} field}
+
+To support large-scale collaborations, the style recognises the
+\texttt{collaboration} field. This is a simple text field which gives the
+name of the collaboration, and which is printed in parenthesis after the
+authors.
+
 \subsection{\textsc{aip} and \textsc{aps} styles}
 
 As detailed above, the standard settings follow the \textsc{aip} style.
@@ -192,6 +199,7 @@ be sent by e-mail to
 \changes{v1.0c}{2018/10/19}{Update DOI link structure}
 \changes{v1.0c}{2018/10/19}{Update internals to follow standard \pkg{biblatex}
   style changes}
+\changes{v1.1}{2018/10/19}{Support for \texttt{collaboration} field}
 
 \PrintChanges
 
