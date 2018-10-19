@@ -123,6 +123,14 @@ To obtain the \textsc{aps} style, use
     {biblatex}
 \end{verbatim}
 
+\subsection{Title formatting}
+
+The style convert article titles to sentence case format. This can be
+suppressed using
+\begin{verbatim}
+\DeclareFieldFormat{titlecase}{#1}
+\end{verbatim}
+
 \section{\textsc{url} formatting}
 
 The style uses the \pkg{url} package to format hyperlinks. As such, the
