@@ -111,6 +111,7 @@
 \DeclareFieldFormat{year}{\mkbibparens{#1}}
 
 % Simple modifications to punctuation, etc.
+\renewcommand*{\begrelateddelim}{\addsemicolon\space}%
 \renewcommand*{\intitlepunct}{\addspace}
 \providecommand*{\mkibid}[1]{#1}
 \renewcommand*{\newunitpunct}{\addcomma\space}
@@ -452,40 +453,6 @@
         }% 
     }%
 }
-
-% This is the original definition from standard.bbx, but 
-% a relatedstring is printed only if it was explicitly defined.
-\renewbibmacro*{related}{%
-  \ifboolexpr{
-    not test {\iftoggle{bbx:related}}
-    or
-    test {\iffieldundef{related}}
-  }
-    {}
-    {%
-     \setunit{\addperiod\addspace}%
-     \setcounter{bbx:relatedcount}{0}%
-     \setcounter{bbx:relatedtotal}{0}%
-     \def\do##1{\stepcounter{bbx:relatedtotal}}%
-     \docsvfield{related}%
-     \def\do{%
-       \stepcounter{bbx:relatedcount}%
-       \ifnumgreater{\value{bbx:relatedcount}}{1}
-         {\printtext{\relateddelim}}
-         {}}%
-     \ifbibmacroundef{related:\strfield{relatedtype}}
-       {\appto{\do}{\usebibmacro{related:default}}}
-       {\appto{\do}{\usebibmacro*{related:\strfield{relatedtype}}}}%
-     \iffieldformatundef{related:\strfield{relatedtype}}
-       {\def\bbx@tempa{related}}
-       {\def\bbx@tempa{related:\strfield{relatedtype}}}%
-     \printtext[\bbx@tempa]{%
-       \iffieldundef{relatedstring}
-         {}
-         {\iffieldbibstring{relatedstring}
-            {\printtext{\bibstring{\thefield{relatedstring}}\relatedpunct}}
-            {\printtext{\printfield{relatedstring}\relatedpunct}}}%
-       \docsvfield{related}}}}
 
 \newbibmacro*{related:translatedas}[1]{%
   \entrydata{#1}{%
