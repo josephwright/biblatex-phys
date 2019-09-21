@@ -434,7 +434,9 @@
         }%
       \iffieldundef{collaboration}
         {}
-        { \printfield[parens]{collaboration}}}
+        {%
+          \setunit{\addspace}%
+          \printfield[parens]{collaboration}}}
     {}%
 }
 
