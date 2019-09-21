@@ -1,0 +1,3 @@
+% Extend biblatex default data model (defined in blx-dm.def) with
+% "collaboration" field.
+\DeclareDatamodelFields[type=field, datatype=literal]{collaboration}

@@ -18,7 +18,7 @@ typesetsuppfiles = {"*.bib"}
 unpackfiles = { }
 
 -- Install biblatex style files and use these as the sources
-installfiles = {"*.cbx", "*.bbx"}
+installfiles = {"*.cbx", "*.bbx", "*.dbx"}
 sourcefiles  = installfiles
 
 -- Release a TDS-style zip
@@ -27,7 +27,7 @@ packtdszip  = true
 -- No tests for this bundle
 testfildir = ""
 
-tagfiles = {"*.bbx", "*.cbx", "*.tex"}
+tagfiles = {"*.bbx", "*.cbx", "*.dbx", "*.tex"}
 
 function update_tag(file,content,tagname,tagdate)
   local pattern = "%d%d%d%d/%d%d/%d%d"
