@@ -458,6 +458,22 @@
     }%
 }
 
+\renewbibmacro*{note+pages}{%
+  \printfield{note}%
+  \setunit{\bibpagespunct}%
+  \printfield{pages}%
+  \iffieldundef{pages}
+    {%
+      \printfield{doi}%
+      \clearfield{doi}%
+    }%
+    {%
+      \iftoggle{bbx:doi}
+        {}
+        {\clearfield{doi}}%
+    }%
+}
+
 \newbibmacro*{related:translatedas}[1]{%
   \entrydata{#1}{%
     \usebibmacro{journal+issuetitle}%
