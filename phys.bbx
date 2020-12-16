@@ -464,9 +464,14 @@
   \printfield{pages}%
   \iffieldundef{pages}
     {%
-      \printfield{doi}%
-      \clearfield{doi}%
+      \iffieldundef{eid}
+        {%
+          \printfield{doi}%
+          \clearfield{doi}%
+        }%
+        {\@firstofone}%
     }%
+    {\@firstofone}%
     {%
       \iftoggle{bbx:doi}
         {}
