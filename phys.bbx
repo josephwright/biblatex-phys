@@ -466,17 +466,13 @@
     {%
       \iffieldundef{eid}
         {%
-          \printfield{doi}%
-          \clearfield{doi}%
-        }%
-        {\@firstofone}%
-    }%
-    {\@firstofone}%
-    {%
-      \iftoggle{bbx:doi}
-        {}
-        {\clearfield{doi}}%
-    }%
+          \iftoggle{bbx:doi}
+            {}
+            {\printfield{doi}}%
+        }
+        {}%
+    }
+    {}%
 }
 
 \newbibmacro*{related:translatedas}[1]{%
