@@ -8,7 +8,7 @@
 %% ---------------------------------------------------------------
 %% 
 
-\ProvidesFile{phys.dbx}[2019/12/03 v1.1b biblatex database model extension]
+\ProvidesFile{phys.dbx}[2024/07/26 v1.1c biblatex database model extension]
 
 \DeclareDatamodelFields[type=field, datatype=literal]{collaboration}
 
